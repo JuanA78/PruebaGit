@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Descargar el código del repo
+      # 1️⃣ Descargar código
       - name: Descargar código del repo
         uses: actions/checkout@v3
 
@@ -37,6 +37,6 @@ jobs:
           echo "Archivos en tests:"
           ls -la tests
 
-      # 6️⃣ Ejecutar pruebas
+      # 6️⃣ Ejecutar pruebas con Jest
       - name: Ejecutar pruebas
         run: npm test
