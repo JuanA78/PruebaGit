@@ -1,27 +1,35 @@
+# Nombre del workflow
 name: CI Pipeline
 
+# Definimos cuándo se ejecuta el workflow
 on:
-  push:
-  pull_request:
+  push:        # Se ejecuta cuando haces push al repositorio
+  pull_request: # Se ejecuta cuando abres un pull request
 
 jobs:
+  # Definimos un job llamado "build"
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Se ejecuta en una máquina virtual con Ubuntu
 
     steps:
+      # Paso 1: Descargar el código del repositorio
       - name: Descargar código
         uses: actions/checkout@v3
 
+      # Paso 2: Configurar Node.js en la VM
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '18' # Usar Node.js versión 18
 
+      # Paso 3: Instalar dependencias del proyecto
       - name: Instalar dependencias
         run: npm install
 
+      # Paso 4: Dar permisos de ejecución a los binarios en node_modules/.bin
       - name: Dar permisos de ejecución a binarios
         run: chmod +x node_modules/.bin/*
 
+      # Paso 5: Ejecutar pruebas con Jest
       - name: Ejecutar pruebas
         run: npx jest
