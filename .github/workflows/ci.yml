@@ -1,0 +1,29 @@
+name: CI Pipeline  # Nombre del workflow
+
+# Cuándo se ejecuta
+on:
+  push:        # Cada vez que hagas un push
+  pull_request:  # Cada vez que alguien abra un pull request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Sistema operativo de la máquina virtual
+
+    steps:
+      # 1️⃣ Descargar el código del repositorio
+      - name: Descargar código del repo
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configurar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Versión de Node.js
+
+      # 3️⃣ Instalar dependencias
+      - name: Instalar dependencias
+        run: npm install
+
+      # 4️⃣ Ejecutar pruebas
+      - name: Ejecutar pruebas
+        run: npm test
