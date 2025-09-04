@@ -9,35 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Descargar código
-      - name: Descargar código del repo
+      - name: Descargar código
         uses: actions/checkout@v3
 
-      # 2️⃣ Configurar Node.js
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3️⃣ Verificar Node y npm
-      - name: Verificar Node y npm
-        run: |
-          node -v
-          npm -v
-
-      # 4️⃣ Instalar dependencias
       - name: Instalar dependencias
         run: npm install
 
-      # 5️⃣ Verificar estructura de archivos
-      - name: Verificar archivos
-        run: |
-          echo "Archivos en la raíz:"
-          ls -la
-          echo "Archivos en tests:"
-          ls -la tests
+      - name: Dar permisos de ejecución a binarios
+        run: chmod +x node_modules/.bin/*
 
-      # 6️⃣ Ejecutar pruebas con Jest
       - name: Ejecutar pruebas
-        run: node_modules/.bin/jest
-
+        run: npx jest
