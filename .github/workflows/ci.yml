@@ -39,4 +39,5 @@ jobs:
 
       # 6️⃣ Ejecutar pruebas con Jest
       - name: Ejecutar pruebas
-        run: npx jest
+        run: node_modules/.bin/jest
+
