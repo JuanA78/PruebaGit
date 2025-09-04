@@ -19,18 +19,24 @@ jobs:
         with:
           node-version: '18'
 
-      # 3️⃣ Instalar dependencias
+      # 3️⃣ Verificar Node y npm
+      - name: Verificar Node y npm
+        run: |
+          node -v
+          npm -v
+
+      # 4️⃣ Instalar dependencias
       - name: Instalar dependencias
         run: npm install
 
-      # 4️⃣ Verificar archivos y rutas
-      - name: Verificar estructura de archivos
+      # 5️⃣ Verificar estructura de archivos
+      - name: Verificar archivos
         run: |
-          echo "Contenido de la raíz del proyecto:"
+          echo "Archivos en la raíz:"
           ls -la
-          echo "Contenido de la carpeta tests:"
+          echo "Archivos en tests:"
           ls -la tests
 
-      # 5️⃣ Ejecutar pruebas
+      # 6️⃣ Ejecutar pruebas
       - name: Ejecutar pruebas
         run: npm test
